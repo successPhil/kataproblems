@@ -1,27 +1,27 @@
-def wave(people):
-    wavearr = []
-    start = 0
-    person = ""
-    if not people:
-            return []
-    for i in range(len(people)):
+# def wave(people):
+#     wavearr = []
+#     start = 0
+#     person = ""
+#     if not people:
+#             return []
+#     for i in range(len(people)):
         
-        if people[i] == ' ':
-             start += 1
-        elif start == 0 and people[i].isalpha():
-            person = people[start].upper() + people[start+1:].lower()
-            wavearr.append(person)
-            person = ""
-            start += 1
-        elif start > 0 and start < len(people)-1 and people[i].isalpha():
-            person = people[0:start].lower() + people[start].upper() + people[start+1:].lower()
-            wavearr.append(person)
-            person = ""
-            start += 1
-        elif start == len(people)-1 and people[i].isalpha():
-            person = people[:start].lower() + people[start].upper()
-            wavearr.append(person)
-    return wavearr
+#         if people[i] == ' ':
+#              start += 1
+#         elif start == 0 and people[i].isalpha():
+#             person = people[start].upper() + people[start+1:].lower()
+#             wavearr.append(person)
+#             person = ""
+#             start += 1
+#         elif start > 0 and start < len(people)-1 and people[i].isalpha():
+#             person = people[0:start].lower() + people[start].upper() + people[start+1:].lower()
+#             wavearr.append(person)
+#             person = ""
+#             start += 1
+#         elif start == len(people)-1 and people[i].isalpha():
+#             person = people[:start].lower() + people[start].upper()
+#             wavearr.append(person)
+#     return wavearr
 
 
 # Created empty array 'wavearr' to store our results
@@ -41,6 +41,25 @@ def wave(people):
 
 #Once we have looped through our string we can return 'wavearr'
 
+def wave(people):
+    wavearr = []
+    start = 0
+    person = ""
+    if not people:
+            return []
+    for i in range(len(people)):
+        if people[i].isalpha():
+            person = people[:i].lower() + people[i].upper() + people[i+1:].lower()
+            wavearr.append(person)
+            person = ""
+        
+    return wavearr
+
+# Refactored solution, Noel pointed out when you slice values that aren't included python
+# returns an empty string for the values that aren't in range
+# This allowed us to not write a bunch of conditional statements
+# Also realized that .isalpha is fine to use as our only check
+# If the letter is not a letter, i will increment but none of our code will execute
 
 
 
